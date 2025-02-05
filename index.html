@@ -58,10 +58,42 @@
             "https://shorturl.at/cti3H"
         ];
 
+        function randomizeCapitalizationInURL(input) {
+          const startIndex = input.indexOf("url=") + 4; // Find "url=" and move 4 characters forward
+          const endIndex = input.indexOf("https", startIndex); // Find "https" after "url="
+          
+          if (startIndex < 4 || endIndex === -1) {
+            // Return input string if "url=" or "https" is not found
+            return input;
+          }
+          const startStr = input.substring(0, startIndex);
+          const midStr = randomizeCapitalization(input.substring(startIndex, endIndex));
+          const endStr = input.substring(endIndex);
+          return `${startStr}${midStr}${endStr}` ; // Extract the substring
+        }
+        
+        function randomizeCapitalization(input) {
+          return input
+            .split('')
+            .map(char => {
+              if (/[a-zA-Z]/.test(char)) { // Check if it's an alphabetic character
+                return Math.random() < 0.5 ? char.toLowerCase() : char.toUpperCase();
+              }
+              return char; // Leave non-alphabetic characters unchanged
+            })
+            .join('');
+        }
+        
         // Redirect to a randomly chosen URL
         window.onload = () => {
             const randomIndex = Math.floor(Math.random() * urls.length);
-            window.location.href = urls[randomIndex];
+            var chosen_url = urls[randomIndex];
+            if (chosen_url.includes("twitter")) {
+                chosen_url = randomizeCapitalizationInURL(chosen_url);
+                
+                
+            }
+            window.location.href = chosen_url;
         };
     </script>
     
