@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Redirect</title>
+    <script>
+        // List of 100 URLs
+        const urls = [
+            "https://example.com/page1",
+            "https://example.com/page2",
+            "https://example.com/page3",
+            "https://example.com/page4",
+            "https://example.com/page5",
+            // Add more URLs up to 100
+            "https://example.com/page100"
+        ];
+
+        // Redirect to a randomly chosen URL
+        window.onload = () => {
+            const randomIndex = Math.floor(Math.random() * urls.length);
+            window.location.href = urls[randomIndex];
+        };
+    </script>
+</head>
+<body>
+    <p>Redirecting... If you are not redirected, <a href="#" id="redirect-link">click here</a>.</p>
+    <script>
+        // Update the fallback link in case JavaScript is blocked
+        document.getElementById('redirect-link').href = urls[Math.floor(Math.random() * urls.length)];
+    </script>
+</body>
+</html>
