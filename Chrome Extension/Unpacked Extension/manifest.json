@@ -1,0 +1,10 @@
+{
+  "name": "Click Extension",
+  "description": "Extension for better Clicking",
+  "version": "1.0",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "click.html",
+    "default_icon": "icon.png"
+  }
+}
